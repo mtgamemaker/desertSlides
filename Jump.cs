@@ -43,6 +43,13 @@ public class Jump : MonoBehaviour
         }
     }
 
+    public void playerJumpbtn2(int jmp1)
+    {
+        if (isGrounded)
+        {
+            rb.velocity = Vector2.up * jmp1;
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(checkGround.position, feetRadius);
