@@ -8,4 +8,8 @@ public class CleanObj : MonoBehaviour
     {
         Destroy(other.gameObject);
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Destroy(other.gameObject);
+    }
 }

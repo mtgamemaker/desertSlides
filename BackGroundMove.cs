@@ -9,10 +9,11 @@ public class BackGroundMove : MonoBehaviour
     public float endX;
 
 
+
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+        transform.Translate(Vector2.left * (speed + MyVars.groundSpeed) * Time.deltaTime * MyVars.stopMoving);
 
         if (transform.position.x <= endX)
         {

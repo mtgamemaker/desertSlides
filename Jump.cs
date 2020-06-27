@@ -5,6 +5,7 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
 
+    Animator anim;
     public int jumpPower;
 
     public bool isGrounded = true;
@@ -20,6 +21,7 @@ public class Jump : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
     }
 
@@ -32,6 +34,26 @@ public class Jump : MonoBehaviour
         {
             playerJumpbtn();
         }
+
+        if (isGrounded && MyVars.stopMoving == 1)
+        {
+            anim.SetInteger("playerState", 0);
+
+        }
+        else if (!isGrounded && MyVars.stopMoving == 1)
+        {
+            anim.SetInteger("playerState", 1);
+        }
+        else if (!isGrounded && MyVars.stopMoving == 0)
+        {
+            anim.SetInteger("playerState", 2);
+        }
+        else if (MyVars.stopMoving == 0)
+        {
+            anim.SetInteger("playerState", 2);
+        }
+
+
     }
 
     public void playerJumpbtn()
@@ -40,9 +62,12 @@ public class Jump : MonoBehaviour
         {
             rb.velocity = Vector2.up * jumpPower;
 
+
         }
     }
 
+
+    // i am using this to take the player down and calling it from another script
     public void playerJumpbtn2(int jmp1)
     {
         if (isGrounded)
